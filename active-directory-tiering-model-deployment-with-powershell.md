@@ -116,7 +116,7 @@ Once all groups are greated and the script only give "skipping" messages you can
 PSO's are objects that enforce password requirements. Using PSO's gives the ability to set different scopes of password requirements per tier. This script does not require an input file.
 
 ## Prerequisites
-- Check the script file to validate the password settings are according to your organizations need. There are 5 objects defined in the script.
+- Check the script file to validate the password settings are according to your organizations need. There are 5 objects defined in the script.   
 
   | # | Scope                  | Object                | Applies to                     | Max Age | Min Lenght | History Count | Precedence |
   |---|------------------------|-----------------------|--------------------------------|---------|------------|---------------|------------|
