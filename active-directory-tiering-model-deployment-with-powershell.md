@@ -1,7 +1,7 @@
 [Download scripts from GitHub](https://github.com/Oyon84/AD-Tier-Administration/archive/refs/heads/master.zip)
 # Powershell scripts for AD Tiering model deployment
 
-This set of PowerShell scripts provides a streamlined way to deploy a tiered model in Active Directory. It’s designed for both existing AD environments—where it creates a new top-level OU and implements the tiering model—and brand-new AD setups, allowing you to establish a tiered structure right from the start.
+**This set of PowerShell scripts provides a streamlined way to deploy a tiered model in Active Directory. It’s designed for both existing AD environments—where it creates a new top-level OU and implements the tiering model—and brand-new AD setups, allowing you to establish a tiered structure right from the start.**
 
 It’s recommended to first test the deployment in a lab environment. This will help you become familiar with the scripts and associated files, ensuring a smooth and confident rollout in production.
 
@@ -212,4 +212,4 @@ GpoDomainName : test.local
 All GPO objects are deployed and linked to the correct OU. Next step is to configure settings for the GPO's, but that part is not covered in this guid.
 
 # 5 - Creating AD roles and permissions (Create-ACEs.ps1)
-This script deploys permissio
+This script deploys permissions to groups that can be used in roles. 
