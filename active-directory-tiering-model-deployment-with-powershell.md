@@ -1,9 +1,9 @@
 [Download scripts from GitHub](https://github.com/Oyon84/AD-Tier-Administration/archive/refs/heads/master.zip)
 # Powershell scripts for AD Tiering model deployment
 
-This collection of scripts allows for quick deployment of a tiering model for Active Directory. These scripts can be used for existing environments and creates a new Top Level OU and deploys the tiering model. You can also use it in a brand new AD environment to get started with a tiering model in AD.
+This set of PowerShell scripts provides a streamlined way to deploy a tiered model in Active Directory. It’s designed for both existing AD environments—where it creates a new top-level OU and implements the tiering model—and brand-new AD setups, allowing you to establish a tiered structure right from the start.
 
-Its reconmended to first deploy inside a test environment to get a full understanding of the scripts and files used.
+It’s recommended to first test the deployment in a lab environment. This will help you become familiar with the scripts and associated files, ensuring a smooth and confident rollout in production.
 
 ## Requirements
 - AD domain
@@ -139,6 +139,23 @@ This script checkes for naming compliance and uses the following rules
 - Policy name
 
 During execution of the script with both methods the naming compliance is checked and if fails the scripts breaks.
+
+## Admin Levels
+The script defines the following admin levels. These translate to groups created prior and grant permissions on GPO's. Below an overview of the default admin levels and linked groups.
+- CorporateUsers                      : GPO_Corporate Users_MOD
+- Tier1NetServers                     : GPO_Tier 1 Network SRV_MOD
+- Tier0PrivilegedAccessWorkstations   : GPO_Tier 0 Privileged Access Workstations_MOD
+- Tier2Workstations                   : GPO_Tier 2 Workstations_MOD
+- Tier1AppServers                     : 
+- Tier1AllServers
+- Tier0PKIServers
+- Tier1UpdateServers
+- Tier0Global
+- Tier1TermServers
+- Tier1ServiceUsers
+- Tier1FileServers
+- Tier1ADMUsers
+- Tier1PrivilegedAccessWorkstations
 
 ## Run Script
 The script has two excution methods.
