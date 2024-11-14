@@ -6,7 +6,7 @@
 # Powershell scripts for AD Tiering model deployment
 
 **This set of PowerShell scripts provides a streamlined way to deploy a tiered model in Active Directory. It’s designed for both existing AD environments where it creates a new top-level OU and implements the tiering model and brand-new AD setups, allowing you to establish a tiered structure right from the start.**
-
+/
 It’s recommended to first test the deployment in a lab environment. This will help you become familiar with the scripts and associated files, ensuring a smooth and confident rollout in production.
 
 ## Requirements
