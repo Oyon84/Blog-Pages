@@ -1,7 +1,7 @@
 ### Links
 
-- [Download scripts from GitHub](https://github.com/Oyon84/AD-Tier-Administration/archive/refs/heads/master.zip)   
-- [GitHub Repo](https://github.com/Oyon84/AD-Tier-Administration)
+[Download scripts from GitHub](https://github.com/Oyon84/AD-Tier-Administration/archive/refs/heads/master.zip)   
+[GitHub Repo](https://github.com/Oyon84/AD-Tier-Administration)
 
 # Powershell scripts for AD Tiering model deployment
 
