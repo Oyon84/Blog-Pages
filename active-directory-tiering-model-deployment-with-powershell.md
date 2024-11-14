@@ -125,4 +125,67 @@ When all settings are correct you can run the script. This will create the Passw
 To verify if objects are created you can run the script again, and it should tell you the objects already exist.
 ```
 # 4 - Creating Group Policy Objects (Create-GPOs.ps1)
-Next step is to deloy GPO objects. 
+The following script does 3 things:
+- Create GPO according input given
+- Set permission based on admin level
+- Link GPO to correct OU
+What this script does not do is setting the settings for these GPO.
+
+## Naming Convention
+This script checkes for naming compliance and uses the following rules
+- Should start with C | U | UC | CU
+- Policy type in capitals, for example: SEC, ADM, PRINTER, Max 15 chars
+- Policy name
+During execution of the script with both methods the naming compliance is checked and if fails the scripts breaks.
+
+## Run Script
+The script has two excution methods.
+- File (Use CSV input file)
+- Interactive (Use console to enter GPO name and admin level)
+
+For initial deployment its reconmended to use the File input method, check the CSV file and adjust to requirements for the organization.
+```
+PS C:\Temp> .\Create-GPOs.ps1 C:\Temp\gpo-list.csv
+```
+If the script has run successful it should show the following output for each GPO in the CSV file.
+```
+Creating GPO C_PWR_Desktop power management
+DisplayName      : C_PWR_Desktop power management
+DomainName       : test.local
+Owner            : TEST\Domain Admins
+Id               : cdb51cfc-7158-4829-8a59-03b10b7e5320
+GpoStatus        : AllSettingsEnabled
+Description      : 
+CreationTime     : 11/14/2024 12:17:04 PM
+ModificationTime : 11/14/2024 12:17:04 PM
+UserVersion      : AD Version: 0, SysVol Version: 0
+ComputerVersion  : AD Version: 0, SysVol Version: 0
+WmiFilter        : 
+
+
+Setting permission to GPO C_PWR_Desktop power management
+DisplayName      : C_PWR_Desktop power management
+DomainName       : test.local
+Owner            : TEST\Domain Admins
+Id               : cdb51cfc-7158-4829-8a59-03b10b7e5320
+GpoStatus        : AllSettingsEnabled
+Description      : 
+CreationTime     : 11/14/2024 12:17:04 PM
+ModificationTime : 11/14/2024 12:17:04 PM
+UserVersion      : AD Version: 0, SysVol Version: 0
+ComputerVersion  : AD Version: 0, SysVol Version: 0
+WmiFilter        : 
+
+
+Linking GPO C_PWR_Desktop power management to OU OU=Desktops,OU=Tier 2,OU=Computers,OU=Corp,DC=test,DC=local
+
+DisplayName   : C_PWR_Desktop power management
+GpoId         : cdb51cfc-7158-4829-8a59-03b10b7e5320
+Enabled       : True
+Enforced      : False
+Order         : 1
+Target        : OU=Desktops,OU=Tier 2,OU=Computers,OU=Corp,DC=test,DC=local
+GpoDomainName : test.local
+```
+All GPO objects are deployed and linked to the correct OU. Next step is to configure settings for the GPO's, but that part is not covered in this guid.
+
