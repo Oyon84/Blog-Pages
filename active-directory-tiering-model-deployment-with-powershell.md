@@ -10,7 +10,7 @@ Its reconmended to first deploy inside a test environment to get a full understa
 - Text editor to edit the input files (csv / json / log)
 - Powershell client, can be visual studio code or Powershell ISE or other preference
 
-# 1 Deploy OU / Container Structure (Create-Structure.ps1)
+# 1. Deploy OU / Container Structure (Create-Structure.ps1)
 First step is to create a new OU structure. This script will deploy a new Top Level OU called **corp** and deploys a new OU structure in the corp OU. This will contain OU's for all tiers and assets and this forms the basis of the tiering model. This script also deploys a set of containers for the following assets:
 - Roles Tier 0, 1, 2
 - Access Control Tier 0, 1, 2
@@ -79,7 +79,7 @@ PS C:\Users\Administrator>
 
 Fix any error you come accross. And the Structure deployment is done.
 
-# 2 Creating groups (Create-Groups.ps1)
+# 2. Creating groups (Create-Groups.ps1)
 Next step is to create groups that will be used for different purposes. The "**group-creation.csv**" file contains all default groups needed for a basic tiering model. You can add extra groups as you desire in the same format.
 
 ## Prerequisites 
@@ -100,7 +100,7 @@ and your console location is that folder.
 ```
 Once all groups are greated and the script only give "skipping" messages you can continue with the next step.
 
-# 3 Creating Password Settings Objects (Create-PSOs.ps1)
+# 3. Creating Password Settings Objects (Create-PSOs.ps1)
 PSO's are objects that enforce password requirements. Using PSO's gives the ability to set different scopes of password requirements per tier. This script does not require an input file.
 
 ## Prerequisites
@@ -123,5 +123,5 @@ When all settings are correct you can run the script. This will create the Passw
 **Note:**This script has no output, so if the script finished without any output it has run successful.
 To verify if objects are created you can run the script again, and it should tell you the objects already exist.
 ```
-# 4 Creating Group Policy Objects (Create-GPOs.ps1)
+# 4. Creating Group Policy Objects (Create-GPOs.ps1)
 Next step is to deloy GPO objects. 
