@@ -136,6 +136,7 @@ This script checkes for naming compliance and uses the following rules
 - Should start with C | U | UC | CU
 - Policy type in capitals, for example: SEC, ADM, PRINTER, Max 15 chars
 - Policy name
+
 During execution of the script with both methods the naming compliance is checked and if fails the scripts breaks.
 
 ## Run Script
@@ -189,3 +190,5 @@ GpoDomainName : test.local
 ```
 All GPO objects are deployed and linked to the correct OU. Next step is to configure settings for the GPO's, but that part is not covered in this guid.
 
+# 5 - Creating AD roles and permissions (Create-ACEs.ps1)
+This script deploys permissio
