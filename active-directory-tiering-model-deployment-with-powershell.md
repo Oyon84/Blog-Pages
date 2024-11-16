@@ -30,12 +30,12 @@ First step is to create a new OU structure. This script will deploy a new Top Le
 
 The script will perform a check the object after its created, if something failed it will be shown on the console with Red text displaying the error.
 
-## Prerequisites 
+### Prerequisites 
 - Rename user locations in **Create-Structure.ps1** to something sensible for your organization. Currently marked as Location 1, 2, 3, 4 and 5.
 - Rename path to your domain. Current value is "DC=test,DC=local" standing for test.local as domain name. Use your text editor to find DC=test,DC=local and replace with DC=yourdomain,DC=local
 - Create any extra OU's 
 
-## Run script
+### Run script
 Next step is to run the script. Output should look similair to the following: 
 
 ```
@@ -94,7 +94,7 @@ Fix any error you come accross. And the Structure deployment is done.
 # 2 - Creating groups (Create-Groups.ps1)
 Next step is to create groups that will be used for different purposes. The "**group-creation.csv**" file contains all default groups needed for a basic tiering model. You can add extra groups as you desire in the same format.
 
-## Prerequisites 
+### Prerequisites 
 - Again you will have to correct the domain name, but this time in the CSV file. Open the CSV file in a text editor and replace the same values as in step 1 to match you domain.
 - Store the script file (Create-Groups.ps1) and the CSV file (group-creation.csv) in the same folder. The script looks for the CSV file in the root where the script is executed. If you use ISE, go to the location of the script, for example: ```cd c:\temp```
 - Add any custom groups you want to deploy as well to the CSV file, see example:
@@ -103,7 +103,7 @@ Name,Path,GroupScope,GroupCategory
 COMPTR_Default Container_CREATE,"CN=Access Control,OU=Tier 2,OU=Administration,OU=Corp,DC=test,DC=local",DomainLocal,Security
 ```
 
-## Run Script
+### Run Script
 Now you can run the script, the output should give you information about the groups successfully created and als the ones that failed to be created. Check for errors in the output, correct them as needed and run the script again. Groups that already exist will be skipped, the ones that failed will be created if the issue is resolved.
 
 ```
@@ -115,7 +115,7 @@ Once all groups are greated and the script only give "skipping" messages you can
 # 3 - Creating Password Settings Objects (Create-PSOs.ps1)
 PSO's are objects that enforce password requirements. Using PSO's gives the ability to set different scopes of password requirements per tier. This script does not require an input file.
 
-## Prerequisites
+### Prerequisites
 Check the script file to validate the password settings are according to your organizations need. There are 5 objects defined in the script.   
 
   | # | Scope                  | Object                | Applies to                     | Max Age | Min Lenght | History Count | Precedence |
@@ -131,7 +131,7 @@ Check the script file to validate the password settings are according to your or
   ```
 Validate the settings with your organizations security policies, if you don't have any the default settings are a good starting point.
 
-## Run Script
+### Run Script
 When all settings are correct you can run the script. This will create the Password Settings Objects and link them to the correct groups. This will enforce the password policies to the right accounts when all scripts are deployed.
 
 ```
@@ -145,7 +145,7 @@ The following script does 3 things:
 - Link GPO to correct OU
 What this script does not do is setting the settings for these GPO.
 
-## Naming Convention
+### Naming Convention
 This script checkes for naming compliance and uses the following rules
 - Should start with C | U | UC | CU
 - Policy type in capitals, for example: SEC, ADM, PRINTER, Max 15 chars
@@ -153,7 +153,7 @@ This script checkes for naming compliance and uses the following rules
 
 During execution of the script with both methods the naming compliance is checked and if fails the scripts breaks.
 
-## Admin Levels
+### Admin Levels
 The script defines the following admin levels. These translate to groups created prior and grant permissions on GPO's. Below an overview of the default admin levels and linked groups.
 ```
 Tier0Global                       = "GPO_Tier 0 Global GPO_MOD"
@@ -173,7 +173,7 @@ CorporateUsers                    = "GPO_Corporate Users_MOD"
 ```
 If you have changed the group names in step 2, that should also be changed in this step. 
 
-## Run Script
+### Run Script
 The script has two excution methods.
 - File (Use CSV input file)
 - Interactive (Use console to enter GPO name and admin level)
