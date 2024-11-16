@@ -9,13 +9,13 @@ It’s recommended to first test the deployment in a lab environment. This will 
 [Download scripts from GitHub](https://github.com/Oyon84/AD-Tier-Administration/archive/refs/heads/master.zip)   
 [GitHub Repo](https://github.com/Oyon84/AD-Tier-Administration)
 
-## Requirements
+### Requirements
 - AD domain
 - Domain admin level permissions
 - Text editor to edit the input files (csv / json / log)
 - Powershell client, can be visual studio code or Powershell ISE or other preference
 
-## Steps
+### Steps
 1. Deploy OU / Container Structure (Create-Structure.ps1)
 2. Creating groups (Create-Groups.ps1)
 3. Creating Password Settings Objects (Create-PSOs.ps1)
