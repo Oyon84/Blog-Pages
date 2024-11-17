@@ -126,9 +126,9 @@ Check the script file to validate the password settings are according to your or
   | 4 | Tier 0 Service Account | PSO_ST0_Service User  | PSO_Tier 0 Service Users_APPLY | 10000   | 100        | 20            | 10         |
   | 5 | Tier 1 Service Account | PSO_ST1_Service User  | PSO_Tier 1 Service Users_APPLY | 10000   | 100        | 20            | 20         |
   
-  ```
-  Note: for all PSO's complexity is turned on requiring complex passwords
-  ```
+
+> Note: for all PSO's complexity is turned on requiring complex passwords
+
 Validate the settings with your organizations security policies, if you don't have any the default settings are a good starting point.
 
 ### Run Script
