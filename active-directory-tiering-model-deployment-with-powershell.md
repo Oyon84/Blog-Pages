@@ -127,17 +127,17 @@ Check the script file to validate the password settings are according to your or
   | 5 | Tier 1 Service Account | PSO_ST1_Service User  | PSO_Tier 1 Service Users_APPLY | 10000   | 100        | 20            | 20         |
   
 
-> Note: for all PSO's complexity is turned on requiring complex passwords
+> Note: For all PSO's complexity is turned on requiring complex passwords
 
 Validate the settings with your organizations security policies, if you don't have any the default settings are a good starting point.
 
 ### Run Script
 When all settings are correct you can run the script. This will create the Password Settings Objects and link them to the correct groups. This will enforce the password policies to the right accounts when all scripts are deployed.
 
-```
-**Note:**This script has no output, so if the script finished without any output it has run successful.
+
+> Note: This script has no output, so if the script finished without any output it has run successful.
 To verify if objects are created you can run the script again, and it should tell you the objects already exist.
-```
+
 # 4 - Creating Group Policy Objects (Create-GPOs.ps1)
 The following script does 3 things:
 - Create GPO according input given
