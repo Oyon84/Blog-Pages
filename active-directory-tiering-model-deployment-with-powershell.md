@@ -1,3 +1,25 @@
+# Index
+
+- [Index](#index)
+- [Introduction](#introduction)
+    - [Links](#links)
+    - [Requirements](#requirements)
+    - [Steps](#steps)
+- [1 - Deploy OU / Container Structure (Create-Structure.ps1)](#1---deploy-ou--container-structure-create-structureps1)
+    - [Prerequisites](#prerequisites)
+    - [Run script](#run-script)
+- [2 - Creating groups (Create-Groups.ps1)](#2---creating-groups-create-groupsps1)
+    - [Prerequisites](#prerequisites-1)
+    - [Run Script](#run-script-1)
+- [3 - Creating Password Settings Objects (Create-PSOs.ps1)](#3---creating-password-settings-objects-create-psosps1)
+    - [Prerequisites](#prerequisites-2)
+    - [Run Script](#run-script-2)
+- [4 - Creating Group Policy Objects (Create-GPOs.ps1)](#4---creating-group-policy-objects-create-gposps1)
+    - [Naming Convention](#naming-convention)
+    - [Admin Levels](#admin-levels)
+    - [Run Script](#run-script-3)
+- [5 - Creating AD roles and permissions (Create-ACEs.ps1)](#5---creating-ad-roles-and-permissions-create-acesps1)
+
 # Introduction
 
 **This set of PowerShell scripts provides a streamlined way to deploy a tiered model in Active Directory. It’s designed for both existing AD environments where it creates a new top-level OU and implements the tiering model and brand-new AD setups, allowing you to establish a tiered structure right from the start.**
