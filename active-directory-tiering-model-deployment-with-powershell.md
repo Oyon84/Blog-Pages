@@ -141,7 +141,7 @@ PSO's are objects that enforce password requirements. Using PSO's gives the abil
 Check the script file to validate the password settings are according to your organizations need. There are 5 objects defined in the script.   
 
   | # | Scope                  | Object                | Applies to                     | Max Age | Min Lenght | History Count | Precedence |
-  |---|------------------------|-----------------------|--------------------------------|---------|------------|---------------|------------|
+  |---|------------------------|-----------------------|--------------------------------|--------:|-----------:|--------------:|-----------:|
   | 1 | Tier 0 Admin           | PSO_AT0_Administrator | PSO_Tier 0 ADM Users_APPLY     | 120     | 20         | 20            | 10         |
   | 2 | Tier 1 Admin           | PSO_AT1_Administrator | PSO_Tier 1 ADM Users_APPLY     | 120     | 20         | 20            | 20         |
   | 3 | Tier 2 Admin           | PSO_AT2_Administrator | PSO_Tier 2 ADM Users_APPLY     | 120     | 16         | 20            | 30         |
