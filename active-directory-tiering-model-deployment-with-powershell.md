@@ -48,6 +48,7 @@ It’s recommended to first test the deployment in a lab environment. This will 
 3. Creating Password Settings Objects (Create-PSOs.ps1)
 4. Creating Group Policy Objects (Create-GPOs.ps1)
 5. Creating AD roles and permissions (Create-ACEs.ps1)
+6. Creating User for each tier (Create-Users.ps1)
 
 # 1 Deploy OU / Container Structure (Create-Structure.ps1)
 First step is to create a new OU structure. This script will deploy a new Top Level OU called **corp** and deploys a new OU structure in the corp OU. This will contain OU's for all tiers and assets and this forms the basis of the tiering model. This script also deploys a set of containers for the following assets:
