@@ -247,4 +247,70 @@ GpoDomainName : test.local
 All GPO objects are deployed and linked to the correct OU. Next step is to configure settings for the GPO's, but that part is not covered in this guid.
 
 # 5 Creating AD roles and permissions (Create-ACEs.ps1)
-This script deploys permissions to groups that can be used in roles. 
+This script deploys permissions for different parts of active directory and assigns them to the roles deployed in earlier steps. These permissions are in the form of ACE's (access control entry) and can allow or deny access to objects. Dry-runs are supported to check for errors before applying the ACE's for real.
+
+### Requirements
+This script requires two input files in JSON format.
+- ACESkel.json | ACE skeleton file defining ACE type, e.g. UnlockUser
+- Permissions.json | Defining access groups and ACE per OU or CN
+
+*ACESkel.json*
+```
+{
+    "UnlockUser": [
+        {
+            "Type": "SpecificPermission",
+            "ACE": {
+                "ActiveDirectoryRights": "ReadProperty,WriteProperty",
+                "AccessControlType": "Allow",
+                "InheritedObjectTypes": [
+                    "lockoutTime"
+                ],
+                "InheritanceType": "Descendents",
+                "ObjectName": "user"
+            }
+        }
+    ]
+}
+```
+*Permissions.json*
+```
+[
+    {
+        "DistinguishedName": "OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local",
+        "ACEs": [
+                    {
+                        "Group": "USR_Tier 1 ADM Users PW_RST",
+                        "Permissions": [
+                        "ResetPassword"
+                        ]
+                    }
+                ]
+    }
+]
+```
+Change permission.json to your requirements, you can find example files in the GitHub repo.
+
+### Run Script
+Run the script without any parameters to do a dry-run. This will go through the whole script and checks the two input files, but will not update any ACL (access control list). 
+```
+PS C:\Temp> .\Create-ACEs.ps1
+Set-ACL -Path AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local -AclObject System.DirectoryServices.ActiveDirectorySecurity -Verbose
+Set-ACL -Path AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local -AclObject System.DirectoryServices.ActiveDirectorySecurity -Verbose
+Set-ACL -Path AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local -AclObject System.DirectoryServices.ActiveDirectorySecurity -Verbose
+Set-ACL -Path AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local -AclObject System.DirectoryServices.ActiveDirectorySecurity -Verbose
+Set-ACL -Path AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local -AclObject System.DirectoryServices.ActiveDirectorySecurity -Verbose
+Set-ACL -Path AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local -AclObject System.DirectoryServices.ActiveDirectorySecurity -Verbose
+...
+```
+When the script has finished and errors are found a log file will be created *ACEDelegation.log* in the location you run the script from. Verify the errors and correct them before you run the script with the LIVE parameter.
+```
+PS C:\Temp> .\Create-ACEs.ps1 LIVE
+VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
+VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
+VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
+VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
+VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
+VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
+...
+```
