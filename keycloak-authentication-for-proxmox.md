@@ -27,8 +27,11 @@ There are two steps to take:
 - Proxmox Setup
 
 If you do not have an Keycloak server yet, you should first set this up. The fastest way to get started with Keycloak is through the proxmox helper scripts mentioned in the links section.
-### Requirements
 
+### Requirements
+Before we can continue we need a couple of things.
+- Keycloak Realm
+- 
 ### Extra Information
 
 # Keycloak Setup

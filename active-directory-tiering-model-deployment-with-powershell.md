@@ -19,6 +19,11 @@
     - [Admin Levels](#admin-levels)
     - [Run Script](#run-script-3)
 - [5 Creating AD roles and permissions (Create-ACEs.ps1)](#5-creating-ad-roles-and-permissions-create-acesps1)
+    - [Requirements](#requirements-1)
+    - [Run Script](#run-script-4)
+- [6 Deploy Users (Create-Users.ps1)](#6-deploy-users-create-usersps1)
+    - [Requirements](#requirements-2)
+    - [Run Script](#run-script-5)
 
 # Introduction
 
@@ -314,3 +319,31 @@ VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU
 VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local".
 ...
 ```
+
+# 6 Deploy Users (Create-Users.ps1)
+Now we get to the last step, which is to deploy the administrative accounts for users to be able to manage active directory.
+
+### Requirements
+One input file is needed, user-creation.csv and should maintain the following structure. 
+
+| SAMAccountName | Tier 0 | Tier 1 | Tier 2 |
+|:---------------|:-------|:-------|:-------|
+| john.doe       | TRUE   | TRUE   | TRUE   |
+| jane.doe       | FALSE  | FALSE  | FALSE  |
+
+The CSV and the script can be further extended to also include roles for example, but here we cover the basiscs. 
+
+> User accounts are automatically placed in the Tier Role group for the respective tier, for example: ROLE_Tier 1 Admin. These roles can be user to enforce settings for all admins for the respective tier. Such as PSO's, Logon isolation, etc...
+
+### Run Script
+When the CSV file is ready you can run the script and see output for any errors.
+
+```
+PS C:\Temp> C:\Temp\Create-Users.ps1
+Created user AT0_john.doe
+Created user AT1_john.doe
+Created user AT2_john.doe
+```
+
+> If are 3 values are FALSE there will be no output for this user.
+
