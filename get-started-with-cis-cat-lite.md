@@ -8,6 +8,7 @@
 - [2 Run assesment from GUI](#2-run-assesment-from-gui)
     - [Basic (Local System)](#basic-local-system)
     - [Advanced (Remote Systems)](#advanced-remote-systems)
+- [3 Run Assesment from CLI](#3-run-assesment-from-cli)
 
 # Introduction
 CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Internet Security, Inc.). CIS-CAT Lite helps users implement secure configurations for multiple technologies. With unlimited scans available via CIS-CAT Lite, your organization can download and start implementing CIS Benchmarks in minutes.
@@ -110,6 +111,7 @@ Click next and confirm to start the assesment. You can view the process and chec
 ### Advanced (Remote Systems)
 If you want to run assesments on remote systems initiated from one system you can use the advanced option. In this example I will focus on remote Windows devices.
 <br></br>
+
 **Information**
 In this section you have to enter information about the remote system. The following table shows all fields that need to be filled based on Windows Systems.
 
@@ -124,4 +126,42 @@ In this section you have to enter information about the remote system. The follo
 | IP Address / Hostname | IP Address of the remote host or DNS hostname |
 | Temporary Path | *Optional* If you want to change the temp folder on the remote host |
 
-When all information has been entered you can select the benchmark you want to run. 
+When all information has been entered you can select the benchmark and profile you want to run and click *Save* to add the remote host. In the next screen you can you'll see a list of target hosts added, and by clicking *Add* and repeat the process for another host. When all desired hosts are added you can proceed by clicking *next* and you can set the **Report Output Options**, please refer to **Report Output Options** section in the **Basic (Local System)** part of this chapter.  
+Next you can start the assesment same why as in the basic method. For each host configure reports will be generated according to the option you configured. 
+
+# 3 Run Assesment from CLI
+If you want to automate assements or integrate it within a script you will have to use the CLI options to run a benchmark. This chapter will go over the steps needed to run a benchmark with the CLI utility.
+
+To run the CLI utility within Windows you have to use the *Assessor-CLI.bat* file. Running this without any parameters will give you an overview of all parameters and options you can set.
+
+```
+c:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor>Assessor-CLI.bat
+
+--------------------------------------------------------------------------------------
+   ,o88888o.    8888    d888888o.          ,o88888o.           8.    8888888888888888
+  8888    `88.  8888  .`8888:' `88.       8888    `88.        .88.         8888
+,88888      `8. 8888  8.`8888.   Y8     ,88888      `8.      .8888.        8888
+888888          8888  `8.`8888.         888888              .`88888.       8888
+888888          8888   `8.`8888.   888  888888             .8.`88888.      8888
+888888          8888    `8.`8888.  888  888888            .8`8.`88888.     8888
+888888          8888     `8.`8888.      888888           .8' `8.`88888.    8888
+`88888      .8' 8888 8b   `8.`8888.     `88888      .8' .8'   `8.`88888.   8888
+  8888    ,88'  8888 `8b.  ;8.`8888       8888    ,88' .888888888.`88888.  8888
+   `888888P'    8888  `Y8888P ,88P'        `888888P'  .8'       `8.`88888. 8888
+--------------------------------------------------------------------------------------
+         Welcome to CIS-CAT Pro Assessor; built on 09/24/2024 21:10 PM
+--------------------------------------------------------------------------------------
+  This is the Center for Internet Security Configuration Assessment Tool, v4.46.0
+          At any time during the selection process, enter 'q!' to exit.
+--------------------------------------------------------------------------------------
+
+Verifying application
+
+usage: Assessor-CLI.[bat|sh] -[options] <extras>
+---------------------------------------------------------------------------------------------------
+ Options                                           Tip
+---------------------------------------------------------------------------------------------------
+ -b,--benchmark <BMK-OR-DSC>                       Path to file containing assessment content, such
+                                                   as an XCCDF or DataStream Collection
+...
+```
