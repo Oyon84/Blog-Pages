@@ -58,11 +58,14 @@ When you are hit with the dialog "Do you want to allow this app to make changes 
 ### Basic (Local System)
 **Benchmarks**  
 The Basic option allows you to do an assesment on the local system you are running the Assesor on. Select the benchmark you want to run, for example *CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0* and select the correct profile. Profiles are a set of checks from the benchmark selected. Taking the windows 11 benchmark the following profiles are available:
-- Level 1 (L1) - Corporate/Enterprise Environment (General Use)
-- Level 1 (L1) + Bitlocker (BL)
-- Level 2 (L2) - High Security/Sensitive Data Environment (Limited Functionality)
-- Level 2 (L2) + Bitlocker (BL)
-- Bitlocker (BL) - optional add-on for when Bitlocker is deployed
+
+| Level | Description |
+|:------|:------------|
+| Level 1 (L1) | Corporate/Enterprise Environment (General Use) |
+| Level 1 (L1) + (BL) | L1 + Bitlocker |
+| Level 2 (L2) | High Security/Sensitive Data Environment (Limited Functionality) |
+| Level 2 (L2) + (BL) | L2 + Bitlocker |
+| Bitlocker (BL) | optional add-on for when Bitlocker is deployed |
 
 Choose one of the profiles to start the assesment, typically Level 1 + Bitlocker will be used for normal office assets. Next click Add. You can add multiple benchmarks by repeating the process. For example you can also add the *CIS Google Chrome Benchmark v3.0.0*. This will run both benchmarks.
 
@@ -70,11 +73,14 @@ Choose one of the profiles to start the assesment, typically Level 1 + Bitlocker
 
 **Report Output Options**  
 Click next, now you can choose the file formats you want the report to be in. These are all the options:
-- HTML (Default)
-- CSV
-- Text
-- ARF XML
-- JSON
+
+| Format | Description |
+|:-------|:------------|
+| HTML | (Default) Report in HTML format |
+| CSV | Comma Separated Value |
+| Text | Plain text format |
+| ARF XML | Asset Reporting Format (ARF) |
+| JSON | Javascript Object Notation |
 
 Choose folder to save the report files. By default the reports are saved in the *reports* folder in the *Assesor* folder from where you run the cis cat gui.
 > C:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor\reports
