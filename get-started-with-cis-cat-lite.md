@@ -5,6 +5,7 @@
 - [1 Download Cis Cat Lite](#1-download-cis-cat-lite)
 - [2 Run assesment from GUI](#2-run-assesment-from-gui)
     - [Basic (Local System)](#basic-local-system)
+    - [Advanced (Remote Systems)](#advanced-remote-systems)
 
 # Introduction
 CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Internet Security, Inc.). CIS-CAT Lite helps users implement secure configurations for multiple technologies. With unlimited scans available via CIS-CAT Lite, your organization can download and start implementing CIS Benchmarks in minutes.
@@ -56,6 +57,7 @@ When extracted and you open the *assesor* folder you should have a file named *A
 When you are hit with the dialog "Do you want to allow this app to make changes to your device?" click *yes*. 
 
 ### Basic (Local System)
+<br></br>
 **Benchmarks**  
 The Basic option allows you to do an assesment on the local system you are running the Assesor on. Select the benchmark you want to run, for example *CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0* and select the correct profile. Profiles are a set of checks from the benchmark selected. Taking the windows 11 benchmark the following profiles are available:
 
@@ -98,3 +100,22 @@ By default the log level is set to WARN, so that warnings and errors are logged.
 You can choose to save the configuration to a XML file for reuse later. Optionally you can also encrypt the file so a user password is needed.
 
 Click next and confirm to start the assesment. You can view the process and check for any errors. When done the reports will be available in the selected folder. 
+
+### Advanced (Remote Systems)
+If you want to run assesments on remote systems initiated from one system you can use the advanced option. In this example I will focus on remote Windows devices.
+<br></br>
+**Information**
+In this section you have to enter information about the remote system. The following table shows all fields that need to be filled based on Windows Systems.
+
+| Field | Description |
+|:------|:------------|
+| Target System Name | This is the name used to differentiate the benchmarks |
+| Target System Type | Type of system, in this case we choose *Windows* |
+| Target System Protocol for WinRM | Choose between HTTP (No Cert and port 5985) or HTTPS (Cert and port 5986 or custom), consult your WinRM configuration|
+| Port | WinRM port |
+| Username | User to connect to remote system, AD Domain user example: user@domain.local, this user should have local administrator privileges |
+| Password | Password for the above user, password is saved in encrypted configuration file |
+| IP Address / Hostname | IP Address of the remote host or DNS hostname |
+| Temporary Path | *Optional* If you want to change the temp folder on the remote host |
+
+When all information has been entered you can select the benchmark you want to run. 
