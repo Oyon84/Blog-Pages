@@ -27,6 +27,7 @@
 - [7 Deploy Users (Create-Users.ps1)](#7-deploy-users-create-usersps1)
     - [Requirements](#requirements-3)
     - [Run Script](#run-script-6)
+- [8 Conclusion](#8-conclusion)
 
 # Introduction
 
@@ -387,3 +388,10 @@ Created user AT2_john.doe
 
 > If are 3 values are FALSE there will be no output for this user.
 
+# 8 Conclusion
+These are all the steps to setup a basic tiering structure and role based access model for an AD environment. There are still some steps to set before you can consider the environment production ready. For example:
+- Set GPO settings
+- Create Authentication policies and silos for administrative accounts
+- Setup PAW's or an alternative such as a RDP Session Host
+
+Check the other guides within the Active Directory category to find information regarding these topics.
