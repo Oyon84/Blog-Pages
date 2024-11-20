@@ -69,9 +69,10 @@ When extracted and you open the *assesor* folder you should have a file named *A
 When you are hit with the dialog "Do you want to allow this app to make changes to your device?" click *yes*. 
 
 ### Basic (Local System)
+The Basic option allows you to do an assesment on the local system you are running the Assesor on. 
 
 **Benchmarks**  
-The Basic option allows you to do an assesment on the local system you are running the Assesor on. Select the benchmark you want to run, for example *CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0* and select the correct profile. Profiles are a set of checks from the benchmark selected. Taking the windows 11 benchmark the following profiles are available:
+Select the benchmark you want to run, for example *CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0* and select the correct profile. Profiles are a set of checks from the benchmark selected. Taking the windows 11 benchmark the following profiles are available:
 
 | Level | Description |
 |:------|:------------|
