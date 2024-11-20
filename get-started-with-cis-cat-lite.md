@@ -29,10 +29,9 @@ In order to download Cis Cat Lite for free you do need to register with an email
 ### Links
 [Download Cis Cat Lite](https://learn.cisecurity.org/cis-cat-lite) | *Version as of writing: 4.46.0*  
 [CIS CAT Documentation](https://ciscat-assessor.docs.cisecurity.org/en/latest/)
-<br></br> 
-Extract all contents from the ZIP file to al location from where you want to run the assesment. For example: c:\temp.
 
 ### Download contents
+Extract all contents from the ZIP file to al location from where you want to run the assesment. For example: c:\temp.
 ```
 PS C:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor> ls
 
