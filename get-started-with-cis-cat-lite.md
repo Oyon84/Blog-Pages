@@ -95,7 +95,7 @@ By default the log level is set to WARN, so that warnings and errors are logged.
 - Debug
 - Trace
 - All Messages
-<br></br>
+  
 **Configuration Output Options**  
 You can choose to save the configuration to a XML file for reuse later. Optionally you can also encrypt the file so a user password is needed.
 
