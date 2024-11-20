@@ -9,6 +9,8 @@
     - [Basic (Local System)](#basic-local-system)
     - [Advanced (Remote Systems)](#advanced-remote-systems)
 - [3 Run Assesment from CLI](#3-run-assesment-from-cli)
+- [4 Example powershell script for automatic assesment](#4-example-powershell-script-for-automatic-assesment)
+    - [Script](#script)
 
 # Introduction
 CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Internet Security, Inc.). CIS-CAT Lite helps users implement secure configurations for multiple technologies. With unlimited scans available via CIS-CAT Lite, your organization can download and start implementing CIS Benchmarks in minutes.
@@ -130,6 +132,7 @@ In this section you have to enter information about the remote system. The follo
 | Temporary Path | *Optional* If you want to change the temp folder on the remote host |
 
 When all information has been entered you can select the benchmark and profile you want to run and click *Save* to add the remote host. In the next screen you can you'll see a list of target hosts added, and by clicking *Add* and repeat the process for another host. When all desired hosts are added you can proceed by clicking *next* and you can set the **Report Output Options**, please refer to **Report Output Options** section in the **Basic (Local System)** part of this chapter.  
+<br></br>
 Next you can start the assesment same why as in the basic method. For each host configure reports will be generated according to the option you configured. 
 
 # 3 Run Assesment from CLI
@@ -194,6 +197,7 @@ Available Benchmarks/Data-Stream Collections:
  > Select Content # (max 7):
 ```
 The application will guide you through the process.
+<br></br>
 
 **Automated method**  
 To run an automated assesment you need to define the benchmark and profile to run. In this example we will use the Windows 11 benchmark with level 1 profile and bitlocker enabled.
@@ -202,3 +206,11 @@ To run an automated assesment you need to define the benchmark and profile to ru
 c:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor>Assessor-CLI.bat -b "benchmarks\CIS_Microsoft_Windows_11_Enterprise_Benchmark_v3.0.0-xccdf.xml" -p "Level 1 (L1) + BitLocker (BL)"
 ```
 
+# 4 Example powershell script for automatic assesment
+To run this script you need a file share where you can host the CIS CAT Lite files and set permissions so the user account who performs the assesment can access the files and write reports to it. The script will download the required files to a temporary location and execute the assesment. When the assesment is finished the report will be stored on the file share and the temporary files will be deleted again.
+
+### Script
+
+```
+
+```
