@@ -9,6 +9,8 @@
     - [Basic (Local System)](#basic-local-system)
     - [Advanced (Remote Systems)](#advanced-remote-systems)
 - [3 Run Assesment from CLI](#3-run-assesment-from-cli)
+    - [Interactive Mode](#interactive-mode)
+    - [Automated Mode](#automated-mode)
 - [4 Example powershell script for automatic assesment](#4-example-powershell-script-for-automatic-assesment)
     - [Script](#script)
 
@@ -173,7 +175,7 @@ usage: Assessor-CLI.[bat|sh] -[options] <extras>
 ```
 > Note: You need to run the assesor with local administrative privileges. Otherwise the script will fail.
 
-**Interactive Mode**  
+### Interactive Mode
 You can run the assesor in interactive mode which allows you to choose which benchmark and profile to run. To do this run the assesor bat file with the **-i** option.
 
 ```
@@ -197,9 +199,8 @@ Available Benchmarks/Data-Stream Collections:
  > Select Content # (max 7):
 ```
 The application will guide you through the process.
-<br></br>
 
-**Automated method**  
+### Automated Mode
 To run an automated assesment you need to define the benchmark and profile to run. In this example we will use the Windows 11 benchmark with level 1 profile and bitlocker enabled.
 
 ```
