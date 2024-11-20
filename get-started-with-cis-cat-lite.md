@@ -3,6 +3,8 @@
 - [Index](#index)
 - [Introduction](#introduction)
 - [1 Download Cis Cat Lite](#1-download-cis-cat-lite)
+    - [Links](#links)
+    - [Download contents](#download-contents)
 - [2 Run assesment from GUI](#2-run-assesment-from-gui)
     - [Basic (Local System)](#basic-local-system)
     - [Advanced (Remote Systems)](#advanced-remote-systems)
@@ -18,8 +20,12 @@ CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Intern
 
 # 1 Download Cis Cat Lite
 In order to download Cis Cat Lite for free you do need to register with an email adress and a link will be sent to you with wich you can download Cis Cat Lite.  
+
+### Links
 [Download Cis Cat Lite](https://learn.cisecurity.org/cis-cat-lite) Version as of writing: 4.46.0  
 Extract all contents from the ZIP file to al location from where you want to run the assesment. For example: c:\temp.
+
+### Download contents
 ```
 PS C:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor> ls
 
