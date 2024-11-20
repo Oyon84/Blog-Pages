@@ -86,14 +86,14 @@ Choose folder to save the report files. By default the reports are saved in the 
 > C:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor\reports
 
 You can also POST the results to an API endpoint. This could be the CIS CAT Dashboard, or your own web application, optionally you can also ignore SSL warnings.
-
+<br></br>
 **Logging Options**  
 By default the log level is set to WARN, so that warnings and errors are logged. For debugging purpose you can set the logging level to:
 - Info
 - Debug
 - Trace
 - All Messages
-
+<br></br>
 **Configuration Output Options**  
 You can choose to save the configuration to a XML file for reuse later. Optionally you can also encrypt the file so a user password is needed.
 
