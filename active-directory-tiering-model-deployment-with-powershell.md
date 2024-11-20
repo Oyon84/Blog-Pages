@@ -11,19 +11,22 @@
 - [2 Creating groups (Create-Groups.ps1)](#2-creating-groups-create-groupsps1)
     - [Prerequisites](#prerequisites-1)
     - [Run Script](#run-script-1)
-- [3 Creating Password Settings Objects (Create-PSOs.ps1)](#3-creating-password-settings-objects-create-psosps1)
-    - [Prerequisites](#prerequisites-2)
+- [3 Set Group Memberships (Add-MembersToGroups.ps1)](#3-set-group-memberships-add-memberstogroupsps1)
+    - [Requirements](#requirements-1)
     - [Run Script](#run-script-2)
-- [4 Creating Group Policy Objects (Create-GPOs.ps1)](#4-creating-group-policy-objects-create-gposps1)
+- [4 Creating Password Settings Objects (Create-PSOs.ps1)](#4-creating-password-settings-objects-create-psosps1)
+    - [Prerequisites](#prerequisites-2)
+    - [Run Script](#run-script-3)
+- [5 Creating Group Policy Objects (Create-GPOs.ps1)](#5-creating-group-policy-objects-create-gposps1)
     - [Naming Convention](#naming-convention)
     - [Admin Levels](#admin-levels)
-    - [Run Script](#run-script-3)
-- [5 Creating AD roles and permissions (Create-ACEs.ps1)](#5-creating-ad-roles-and-permissions-create-acesps1)
-    - [Requirements](#requirements-1)
     - [Run Script](#run-script-4)
-- [6 Deploy Users (Create-Users.ps1)](#6-deploy-users-create-usersps1)
+- [6 Creating AD roles and permissions (Create-ACEs.ps1)](#6-creating-ad-roles-and-permissions-create-acesps1)
     - [Requirements](#requirements-2)
     - [Run Script](#run-script-5)
+- [7 Deploy Users (Create-Users.ps1)](#7-deploy-users-create-usersps1)
+    - [Requirements](#requirements-3)
+    - [Run Script](#run-script-6)
 
 # Introduction
 
@@ -64,7 +67,7 @@ The script will perform a check the object after its created, if something faile
 - Create any extra OU's 
 
 ### Run script
-Next step is to run the script. Output should look similair to the following: 
+Next step is to run the script. Output should look similar to the following: 
 
 ```
 PS C:\Users\Administrator> C:\Temp\Create-Structure.ps1
@@ -117,7 +120,7 @@ Creating Container Access Control in OU=Tier 0,OU=Service,OU=Corp,DC=test,DC=loc
 PS C:\Users\Administrator> 
 ```
 
-Fix any error you come accross. And the Structure deployment is done.
+Fix any error you come across. And the Structure deployment is done.
 
 # 2 Creating groups (Create-Groups.ps1)
 Next step is to create groups that will be used for different purposes. The "**group-creation.csv**" file contains all default groups needed for a basic tiering model. You can add extra groups as you desire in the same format.
@@ -138,15 +141,49 @@ Now you can run the script, the output should give you information about the gro
 If the script gives an error that it can't find the CSV file check if the script and csv are in the same folder
 and your console location is that folder.
 ```
-Once all groups are greated and the script only give "skipping" messages you can continue with the next step.
+Once all groups are created and the script only give "skipping" messages you can continue with the next step.
 
-# 3 Creating Password Settings Objects (Create-PSOs.ps1)
+# 3 Set Group Memberships (Add-MembersToGroups.ps1)
+Here we add the role groups to the correct permission groups. This is done with the input from a CSV file.
+
+### Requirements
+A input CSV file is needed called group-membership. This file contains two collumns:
+
+| Group              | addto           |
+|:-------------------|:----------------|
+| "ROLE_T0_AD Admin" | "Domain admins" |
+| "ROLE_T0_Global GPO Admin" | "GPO_Tier 0 Global GPO_MOD" |
+
+Modify the file to your needs.
+
+### Run Script
+When the CSV file is ready the script can be run. It will first check if the role is not yet a member of the group in the "addto" column. If so it will skip and go to the next.
+
+```
+PS C:\Temp> C:\Temp\Add-MembersToGroups.ps1
+Adding ROLE_T0_SCHM Admin to Schema admins
+Adding ROLE_T0_ENTRP Admin to Enterprise admins
+Adding ROLE_T0_AD Admin to Domain admins
+Adding ROLE_T0_Global GPO Admin to GPO_Tier 0 Global GPO_MOD
+Adding ROLE_T0_PKI Server Admin to SRV_Tier 0 PKI SRV_MOD
+Adding ROLE_T0_PKI Server Admin to SRV_Tier 0 PKI SRV_RENAME
+...
+```
+*Warning if membership already exists*
+```
+PS C:\Temp> C:\Temp\Add-MembersToGroups.ps1
+WARNING : Group  ROLE_T0_Global GPO Admin  is already a member of GPO_Tier 0 Global GPO_MOD
+```
+
+Look for any errors and correct them where needed.
+
+# 4 Creating Password Settings Objects (Create-PSOs.ps1)
 PSO's are objects that enforce password requirements. Using PSO's gives the ability to set different scopes of password requirements per tier. This script does not require an input file.
 
 ### Prerequisites
 Check the script file to validate the password settings are according to your organizations need. There are 5 objects defined in the script.   
 
-  | # | Scope                  | Object                | Applies to                     | Max Age | Min Lenght | History Count | Precedence |
+  | # | Scope                  | Object                | Applies to                     | Max Age | Min Length | History Count | Precedence |
   |---|------------------------|-----------------------|--------------------------------|--------:|-----------:|--------------:|-----------:|
   | 1 | Tier 0 Admin           | PSO_AT0_Administrator | PSO_Tier 0 ADM Users_APPLY     | 120     | 20         | 20            | 10         |
   | 2 | Tier 1 Admin           | PSO_AT1_Administrator | PSO_Tier 1 ADM Users_APPLY     | 120     | 20         | 20            | 20         |
@@ -166,7 +203,7 @@ When all settings are correct you can run the script. This will create the Passw
 > Note: This script has no output, so if the script finished without any output it has run successful.
 To verify if objects are created you can run the script again, and it should tell you the objects already exist.
 
-# 4 Creating Group Policy Objects (Create-GPOs.ps1)
+# 5 Creating Group Policy Objects (Create-GPOs.ps1)
 The following script does 3 things:
 - Create GPO according input given
 - Set permission based on admin level
@@ -174,7 +211,7 @@ The following script does 3 things:
 What this script does not do is setting the settings for these GPO.
 
 ### Naming Convention
-This script checkes for naming compliance and uses the following rules
+This script checks for naming compliance and uses the following rules
 - Should start with C | U | UC | CU
 - Policy type in capitals, for example: SEC, ADM, PRINTER, Max 15 chars
 - Policy name
@@ -206,7 +243,7 @@ The script has two excution methods.
 - File (Use CSV input file)
 - Interactive (Use console to enter GPO name and admin level)
 
-For initial deployment its reconmended to use the File input method, check the CSV file and adjust to requirements for the organization.
+For initial deployment its recommended to use the File input method, check the CSV file and adjust to requirements for the organization.
 ```
 PS C:\Temp> .\Create-GPOs.ps1 C:\Temp\gpo-list.csv
 ```
@@ -252,7 +289,7 @@ GpoDomainName : test.local
 ```
 All GPO objects are deployed and linked to the correct OU. Next step is to configure settings for the GPO's, but that part is not covered in this guid.
 
-# 5 Creating AD roles and permissions (Create-ACEs.ps1)
+# 6 Creating AD roles and permissions (Create-ACEs.ps1)
 This script deploys permissions for different parts of active directory and assigns them to the roles deployed in earlier steps. These permissions are in the form of ACE's (access control entry) and can allow or deny access to objects. Dry-runs are supported to check for errors before applying the ACE's for real.
 
 ### Requirements
@@ -321,7 +358,7 @@ VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU
 ...
 ```
 
-# 6 Deploy Users (Create-Users.ps1)
+# 7 Deploy Users (Create-Users.ps1)
 Now we get to the last step, which is to deploy the administrative accounts for users to be able to manage active directory.
 
 ### Requirements
@@ -332,7 +369,7 @@ One input file is needed, user-creation.csv and should maintain the following st
 | john.doe       | TRUE   | TRUE   | TRUE   |
 | jane.doe       | FALSE  | FALSE  | FALSE  |
 
-The CSV and the script can be further extended to also include roles for example, but here we cover the basiscs. 
+The CSV and the script can be further extended to also include roles for example, but here we cover the basics. 
 
 > User accounts are automatically placed in the Tier Role group for the respective tier, for example: ROLE_Tier 1 Admin. These roles can be user to enforce settings for all admins for the respective tier. Such as PSO's, Logon isolation, etc...
 
