@@ -1,5 +1,10 @@
 # Index
 
+- [Index](#index)
+- [Introduction](#introduction)
+- [1 Download Cis Cat Lite](#1-download-cis-cat-lite)
+- [2 Run assesment from GUI](#2-run-assesment-from-gui)
+
 # Introduction
 CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Internet Security, Inc.). CIS-CAT Lite helps users implement secure configurations for multiple technologies. With unlimited scans available via CIS-CAT Lite, your organization can download and start implementing CIS Benchmarks in minutes.
 
