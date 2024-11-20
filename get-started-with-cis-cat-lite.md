@@ -23,7 +23,9 @@ CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Intern
 In order to download Cis Cat Lite for free you do need to register with an email adress and a link will be sent to you with wich you can download Cis Cat Lite.  
 
 ### Links
-[Download Cis Cat Lite](https://learn.cisecurity.org/cis-cat-lite) Version as of writing: 4.46.0  
+[Download Cis Cat Lite](https://learn.cisecurity.org/cis-cat-lite) | *Version as of writing: 4.46.0*  
+[CIS CAT Documentation](https://ciscat-assessor.docs.cisecurity.org/en/latest/)
+<br></br> 
 Extract all contents from the ZIP file to al location from where you want to run the assesment. For example: c:\temp.
 
 ### Download contents
@@ -64,7 +66,7 @@ When extracted and you open the *assesor* folder you should have a file named *A
 When you are hit with the dialog "Do you want to allow this app to make changes to your device?" click *yes*. 
 
 ### Basic (Local System)
-<br></br>
+
 **Benchmarks**  
 The Basic option allows you to do an assesment on the local system you are running the Assesor on. Select the benchmark you want to run, for example *CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0* and select the correct profile. Profiles are a set of checks from the benchmark selected. Taking the windows 11 benchmark the following profiles are available:
 
@@ -96,6 +98,7 @@ Choose folder to save the report files. By default the reports are saved in the 
 
 You can also POST the results to an API endpoint. This could be the CIS CAT Dashboard, or your own web application, optionally you can also ignore SSL warnings.
 <br></br>
+
 **Logging Options**  
 By default the log level is set to WARN, so that warnings and errors are logged. For debugging purpose you can set the logging level to:
 - Info
@@ -131,7 +134,7 @@ Next you can start the assesment same why as in the basic method. For each host 
 
 # 3 Run Assesment from CLI
 If you want to automate assements or integrate it within a script you will have to use the CLI options to run a benchmark. This chapter will go over the steps needed to run a benchmark with the CLI utility.
-
+<br></br>
 To run the CLI utility within Windows you have to use the *Assessor-CLI.bat* file. Running this without any parameters will give you an overview of all parameters and options you can set.
 
 ```
@@ -165,3 +168,37 @@ usage: Assessor-CLI.[bat|sh] -[options] <extras>
                                                    as an XCCDF or DataStream Collection
 ...
 ```
+> Note: You need to run the assesor with local administrative privileges. Otherwise the script will fail.
+
+**Interactive Mode**  
+You can run the assesor in interactive mode which allows you to choose which benchmark and profile to run. To do this run the assesor bat file with the **-i** option.
+
+```
+c:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor>Assessor-CLI.bat -i
+
+Verifying application
+
+Attempting to load the default sessions.properties, bundled with the application.
+Started Assessment 1/1
+
+Loading Benchmarks/Data-Stream Collections
+
+Available Benchmarks/Data-Stream Collections:
+ 1. CIS Controls Assessment Module - Implementation Group 1 for Windows 10 v1.0.3
+ 2. CIS Controls Assessment Module - Implementation Group 1 for Windows Server v1.0.0
+ 3. CIS Google Chrome Benchmark v3.0.0
+ 4. CIS Microsoft Windows 10 Enterprise Benchmark v3.0.0
+ 5. CIS Microsoft Windows 10 Stand-alone Benchmark v3.0.0
+ 6. CIS Microsoft Windows 11 Enterprise Benchmark v3.0.0
+ 7. CIS Ubuntu Linux 20.04 LTS Benchmark v2.0.1
+ > Select Content # (max 7):
+```
+The application will guide you through the process.
+
+**Automated method**  
+To run an automated assesment you need to define the benchmark and profile to run. In this example we will use the Windows 11 benchmark with level 1 profile and bitlocker enabled.
+
+```
+c:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor>Assessor-CLI.bat -b "benchmarks\CIS_Microsoft_Windows_11_Enterprise_Benchmark_v3.0.0-xccdf.xml" -p "Level 1 (L1) + BitLocker (BL)"
+```
+
