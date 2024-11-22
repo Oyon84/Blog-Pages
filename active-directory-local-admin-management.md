@@ -14,6 +14,7 @@
 - [Setup Scheduled Task](#setup-scheduled-task)
     - [Create Service Account](#create-service-account)
     - [Create new scheduled task](#create-new-scheduled-task)
+- [Conclusion](#conclusion)
 
 # Introduction
 **Managing local admins in Active Directory can be a challenging task. Especially when you want to give single users local admin permissions on a single asset. Typically this would require adding the user account to the local administrator group, but this is difficult to audit and typically the permissions are not removed when no longer needed.**
@@ -21,7 +22,6 @@
 To manage the local admin permissions from Active Directory you can work with group policies, but with this approach you cant assign a single user to a single asset. Every asset linked to the GPO will have the same configuration. 
 
 In this guide I explain how to create a GPO assigning dynamic groups to the local administrator group on an asset. This does require a powershell script and a scheduled task to be created on a domain controller.  
-<br></br>
 
 There are multiple benefits to this approach:
 - Dynamic Local admin permissions.
@@ -177,3 +177,8 @@ PS C:\> $settings = New-ScheduledTaskSettingsSet
 PS C:\> $task = New-ScheduledTask -Action $action -Principal $principal -Trigger $trigger -Settings $settings
 PS C:\> Register-ScheduledTask T1 -InputObject $task
 ```
+
+# Conclusion
+
+
+
