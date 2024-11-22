@@ -17,7 +17,7 @@
 - [Conclusion](#conclusion)
 
 # Introduction
-**Managing local admins in Active Directory can be a challenging task. Especially when you want to give single users local admin permissions on a single asset. Typically this would require adding the user account to the local administrator group, but this is difficult to audit and typically the permissions are not removed when no longer needed.**
+**Managing local admins in Active Directory can be a challenging task. Especially when you want to give single users local admin permissions on a single asset. Typically this would require adding the user account to the local administrator group, but this is difficult to audit and typically the permissions are not removed when no longer needed.**  
 
 To manage the local admin permissions from Active Directory you can work with group policies, but with this approach you cant assign a single user to a single asset. Every asset linked to the GPO will have the same configuration. 
 
