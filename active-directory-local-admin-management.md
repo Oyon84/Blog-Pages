@@ -11,7 +11,7 @@
     - [Conclusion step 1](#conclusion-step-1)
 - [2 Check for new hosts](#2-check-for-new-hosts)
     - [Powershell script](#powershell-script)
-- [Setup Scheduled Task](#setup-scheduled-task)
+- [3 Setup Scheduled Task](#3-setup-scheduled-task)
     - [Create Service Account](#create-service-account)
     - [Create new scheduled task](#create-new-scheduled-task)
 - [Conclusion](#conclusion)
@@ -127,6 +127,8 @@ The script will do two tasks:
 - Check for each host if a LocalAdm group exists.
 - Create a new LocalAdm group if a host does not have a group.
 
+> You could also choose to hardcode the *SearchBase* and the *GroupPath*, but by using parameters the script can be reused for different locations allowing to process multiple locations separately with the same script. 
+
 Execute the script with the following command to test it before setting up the scheduled task.
 ```
 PS C:\Temp> .\Create-LADMGroups.ps1 -SearchBase 'OU=Tier 1,OU=Computers,OU=Corp,DC=test,DC=local' -GroupPath 'OU=LocalAdm_Tier1,OU=Users,OU=Tier 1,OU=Administration,OU=Corp,DC=test,DC=local'
@@ -157,7 +159,7 @@ UserPrincipalName :
 
 After the script was manually executed verify the existence of the groups. If the groups are created we can move to the next step.
 
-# Setup Scheduled Task
+# 3 Setup Scheduled Task
 In this step we will setup the scheduled task with the help of Powershell. We need to create an new service account to perform this action. 
 
 ### Create Service Account
