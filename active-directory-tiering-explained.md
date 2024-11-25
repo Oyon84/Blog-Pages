@@ -30,7 +30,8 @@ There are 3 rules, or call them commandments which are crucial for a tiering mod
 
 When you follow these 3 rules you can reduce your attack surface a lot. The picture below explains how these 3 rules work.  
 <sub>*Microsoft Tiering Model*</sub>  
-![alt text](https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00MDUyODUxLTU1MDI2Mmk4RTYwNjEwMzI1QUM3RTJB?image-dimensions=450x450&revision=21)
+![alt text](https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00MDUyODUxLTU1MDI2Mmk4RTYwNjEwMzI1QUM3RTJB?image-dimensions=450x450&revision=21)  
+<sub>*Src: Microsoft Community Hub*</sub> 
 
 # Implementing the AD Administrative Tier Model
 In most guides for deploying an AD tiering model you will read about complicated GPO setups that prevent higher tiered administrative accounts to login on lower tiered assets. This approach comes with a couple of downsides.
