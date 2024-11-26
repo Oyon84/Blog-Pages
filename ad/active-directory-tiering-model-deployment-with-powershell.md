@@ -5,30 +5,29 @@
     - [Links](#links)
     - [Requirements](#requirements)
     - [Steps](#steps)
-- [1 Deploy OU / Container Structure (Create-Structure.ps1)](#1-deploy-ou--container-structure-create-structureps1)
+- [1 Deploy OU / Container Structure](#1-deploy-ou--container-structure)
     - [Prerequisites](#prerequisites)
     - [Run script](#run-script)
-- [2 Creating groups (Create-Groups.ps1)](#2-creating-groups-create-groupsps1)
+- [2 Creating groups](#2-creating-groups)
     - [Prerequisites](#prerequisites-1)
     - [Run Script](#run-script-1)
-- [3 Set Group Memberships (Add-MembersToGroups.ps1)](#3-set-group-memberships-add-memberstogroupsps1)
+- [3 Set Group Memberships](#3-set-group-memberships)
     - [Requirements](#requirements-1)
     - [Run Script](#run-script-2)
-- [4 Creating Password Settings Objects (Create-PSOs.ps1)](#4-creating-password-settings-objects-create-psosps1)
+- [4 Creating Password Settings Objects](#4-creating-password-settings-objects)
     - [Prerequisites](#prerequisites-2)
     - [Run Script](#run-script-3)
-- [5 Creating Group Policy Objects (Create-GPOs.ps1)](#5-creating-group-policy-objects-create-gposps1)
+- [5 Creating Group Policy Objects](#5-creating-group-policy-objects)
     - [Naming Convention](#naming-convention)
     - [Admin Levels](#admin-levels)
     - [Run Script](#run-script-4)
-- [6 Creating AD roles and permissions (Create-ACEs.ps1)](#6-creating-ad-roles-and-permissions-create-acesps1)
+- [6 Creating AD roles and permissions](#6-creating-ad-roles-and-permissions)
     - [Requirements](#requirements-2)
     - [Run Script](#run-script-5)
-- [7 Deploy Users (Create-Users.ps1)](#7-deploy-users-create-usersps1)
+- [7 Deploy Users](#7-deploy-users)
     - [Requirements](#requirements-3)
     - [Run Script](#run-script-6)
 - [8 Conclusion](#8-conclusion)
-- [9 Comments](#comments)
 
 # Introduction
 
@@ -56,7 +55,8 @@ It’s recommended to first test the deployment in a lab environment. This will 
 6. Creating AD roles and permissions (Create-ACEs.ps1)
 7. Creating User for each tier (Create-Users.ps1)
 
-# 1 Deploy OU / Container Structure (Create-Structure.ps1)
+# 1 Deploy OU / Container Structure  
+**Script:** (Create-Structure.ps1)  
 First step is to create a new OU structure. This script will deploy a new Top Level OU called **corp** and deploys a new OU structure in the corp OU. This will contain OU's for all tiers and assets and this forms the basis of the tiering model. This script also deploys a set of containers for the following assets:
 - Roles Tier 0, 1, 2
 - Access Control Tier 0, 1, 2
@@ -125,7 +125,8 @@ PS C:\Users\Administrator>
 
 Fix any error you come across. And the Structure deployment is done.
 
-# 2 Creating groups (Create-Groups.ps1)
+# 2 Creating groups  
+**Script:** (Create-Groups.ps1)  
 Next step is to create groups that will be used for different purposes. The "**group-creation.csv**" file contains all default groups needed for a basic tiering model. You can add extra groups as you desire in the same format.
 
 ### Prerequisites 
@@ -146,7 +147,8 @@ and your console location is that folder.
 ```
 Once all groups are created and the script only give "skipping" messages you can continue with the next step.
 
-# 3 Set Group Memberships (Add-MembersToGroups.ps1)
+# 3 Set Group Memberships  
+**Script:** (Add-MembersToGroups.ps1)  
 Here we add the role groups to the correct permission groups. This is done with the input from a CSV file.
 
 ### Requirements
@@ -180,7 +182,8 @@ WARNING : Group  ROLE_T0_Global GPO Admin  is already a member of GPO_Tier 0 Glo
 
 Look for any errors and correct them where needed.
 
-# 4 Creating Password Settings Objects (Create-PSOs.ps1)
+# 4 Creating Password Settings Objects  
+**Script:** (Create-PSOs.ps1)  
 PSO's are objects that enforce password requirements. Using PSO's gives the ability to set different scopes of password requirements per tier. This script does not require an input file.
 
 ### Prerequisites
@@ -206,7 +209,8 @@ When all settings are correct you can run the script. This will create the Passw
 > Note: This script has no output, so if the script finished without any output it has run successful.
 To verify if objects are created you can run the script again, and it should tell you the objects already exist.
 
-# 5 Creating Group Policy Objects (Create-GPOs.ps1)
+# 5 Creating Group Policy Objects  
+**Script:** (Create-GPOs.ps1)  
 The following script does 3 things:
 - Create GPO according input given
 - Set permission based on admin level
@@ -294,7 +298,8 @@ GpoDomainName : test.local
 ```
 All GPO objects are deployed and linked to the correct OU. Next step is to configure settings for the GPO's, but that part is not covered in this guid.
 
-# 6 Creating AD roles and permissions (Create-ACEs.ps1)
+# 6 Creating AD roles and permissions  
+**Script:** (Create-ACEs.ps1)  
 This script deploys permissions for different parts of active directory and assigns them to the roles deployed in earlier steps. These permissions are in the form of ACE's (access control entry) and can allow or deny access to objects. Dry-runs are supported to check for errors before applying the ACE's for real.
 
 ### Requirements
@@ -363,7 +368,8 @@ VERBOSE: Performing the operation "Set-Acl" on target "AD:\OU=Users,OU=Tier 1,OU
 ...
 ```
 
-# 7 Deploy Users (Create-Users.ps1)
+# 7 Deploy Users  
+**Script:** (Create-Users.ps1)  
 Now we get to the last step, which is to deploy the administrative accounts for users to be able to manage active directory.
 
 ### Requirements
