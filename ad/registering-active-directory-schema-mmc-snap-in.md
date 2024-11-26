@@ -4,6 +4,7 @@
 - [Register Snap-in](#register-snap-in)
 - [Register Snap-in on non Domain Controler](#register-snap-in-on-non-domain-controler)
 - [Open snap-in](#open-snap-in)
+- [Comments](#comments)
 
 # Introduction
 Most of the Active Directory MMC snap-ins do not require that you manually register the associated DLL. Microsoft requires this with the Active Directory Schema snap-in due to the sensitive nature of modifying the schema.  
