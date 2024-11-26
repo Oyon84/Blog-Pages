@@ -28,6 +28,7 @@
     - [Requirements](#requirements-3)
     - [Run Script](#run-script-6)
 - [8 Conclusion](#8-conclusion)
+- [9 Comments](#comments)
 
 # Introduction
 
