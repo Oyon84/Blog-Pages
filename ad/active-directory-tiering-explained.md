@@ -9,6 +9,7 @@
     - [Authentication Policies](#authentication-policies)
     - [Deep Dive in Authentication Policies](#deep-dive-in-authentication-policies)
     - [FAST (Flexible Authentication Secure Tunneling)](#fast-flexible-authentication-secure-tunneling)
+- [Comments](#comments)
 
 # Introduction
 The AD Administrative Tier Model prevents escalation of privilege by restricting what Administrators can control and where they can log on. In the context of protecting Tier 0, the latter ensures that Tier 0 credentials cannot be exposed to a system belonging to another Tier (Tier 1 or Tier 2).
