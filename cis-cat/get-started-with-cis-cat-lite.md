@@ -13,6 +13,7 @@
     - [Automated Mode](#automated-mode)
 - [4 Example powershell script for automatic assesment](#4-example-powershell-script-for-automatic-assesment)
     - [Script](#script)
+- [Comments](#comments)
 
 # Introduction
 CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Internet Security, Inc.). CIS-CAT Lite helps users implement secure configurations for multiple technologies. With unlimited scans available via CIS-CAT Lite, your organization can download and start implementing CIS Benchmarks in minutes.
