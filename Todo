@@ -1,0 +1,11 @@
+- Create new model for general settings to be stored
+    - Logo url - filament upload
+    - App name
+    - Hero text 1
+    - Hero text 2
+    - Hero text 3
+    - Hero Image Logo url
+
+- Create new model for contact form
+    - Text field for text being displayed
+    - 
