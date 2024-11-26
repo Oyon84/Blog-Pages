@@ -10,6 +10,7 @@
     - [Requirements](#requirements-1)
 - [Proxmox Setup](#proxmox-setup)
     - [Requirements](#requirements-2)
+- [Comments](#comments)
 
 # Introduction
 **This is a quide to setup Proxmox to authenticate with Keycloak using OpenIDConnect to allow signle sign on for Proxmox VE and further securing the authentication process of proxmox by using roles within Keycloak.**   
