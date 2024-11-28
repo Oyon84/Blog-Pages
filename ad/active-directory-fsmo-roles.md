@@ -10,10 +10,10 @@
     - [PDC Emulator role](#pdc-emulator-role)
     - [Infrastructure Master role](#infrastructure-master-role)
 - [Manage FSMO Roles](#manage-fsmo-roles)
-    - [Move Role from one to another DC](#move-role-from-one-to-another-dc)
     - [View FSMO roles with GUI](#view-fsmo-roles-with-gui)
     - [View FSMO roles with Powershell](#view-fsmo-roles-with-powershell)
     - [View FSMO roles with Command Prompt](#view-fsmo-roles-with-command-prompt)
+    - [Move Role from one to another DC](#move-role-from-one-to-another-dc)
 
 # Introduction
 
@@ -92,33 +92,6 @@ This role should be assigned to a DC that is not a Global Catalog (GC) server, u
 
 This section dives into managing the FSMO roles, there are some do and don't recommendations.
 
-### Move Role from one to another DC
-
-The DC that owns an FSMO role needs to be available whenever updates it is responsible for need to be made. Some of those updates, such as change to the schema and the addition of new domains, are rare, while other types of changes are more frequent. In particular, the PDC Emulator needs to be accessible at all times.  
-
-Administrators can move an Active Directory FSMO role from one DC to another via transfer or seizure:
-- **Transfer** - One reason to transfer a role to another DC is that you know that a particular FSMO role owner is going be offline when it will be needed. When the former role holder restarts, it will check inbound replication information, determine that it no longer holds the role and smoothly relinquish role ownership.
-- **Seizure** -  If a DC that owns an FSMO role crashes and cannot be restored, you can seize the FSMO role and assign it to another domain controller.
-
-> When performing a transfer, to complete the procedure the current role owner needs to reboot to release ownership of the role.
-
-To use powershell to move the roles to other DC's you need to keep the following numbers in mind:
-```
-0: PDCEmulator
-1: RIDMaster
-2: InfrastructureMaster
-3: SchemaMaster
-4: DomainNamingMaster
-```
-These numbers can be used to identify the role you want to move, see commands below.  
-<sub>*Transfer roles*</sub>
-```
-Move-ADDirectoryServerOperationMasterRole -Identity NewDC -OperationMasterRole 0,1,2,3,4  
-```
-<sub>*Seize roles*</sub>
-```
-Move-ADDirectoryServerOperationMasterRole -Identity NewDC -OperationMasterRole 0,1,2,3,4 -Force  
-```
 
 ### View FSMO roles with GUI
 
@@ -185,3 +158,30 @@ Infrastructure master       DC01.test.local
 The command completed successfully.
 ```
 
+### Move Role from one to another DC
+
+The DC that owns an FSMO role needs to be available whenever updates it is responsible for need to be made. Some of those updates, such as change to the schema and the addition of new domains, are rare, while other types of changes are more frequent. In particular, the PDC Emulator needs to be accessible at all times.  
+
+Administrators can move an Active Directory FSMO role from one DC to another via transfer or seizure:
+- **Transfer** - One reason to transfer a role to another DC is that you know that a particular FSMO role owner is going be offline when it will be needed. When the former role holder restarts, it will check inbound replication information, determine that it no longer holds the role and smoothly relinquish role ownership.
+- **Seizure** -  If a DC that owns an FSMO role crashes and cannot be restored, you can seize the FSMO role and assign it to another domain controller.
+
+> When performing a transfer, to complete the procedure the current role owner needs to reboot to release ownership of the role.
+
+To use powershell to move the roles to other DC's you need to keep the following numbers in mind:
+```
+0: PDCEmulator
+1: RIDMaster
+2: InfrastructureMaster
+3: SchemaMaster
+4: DomainNamingMaster
+```
+These numbers can be used to identify the role you want to move, see commands below.  
+<sub>*Transfer roles*</sub>
+```
+Move-ADDirectoryServerOperationMasterRole -Identity NewDC -OperationMasterRole 0,1,2,3,4  
+```
+<sub>*Seize roles*</sub>
+```
+Move-ADDirectoryServerOperationMasterRole -Identity NewDC -OperationMasterRole 0,1,2,3,4 -Force  
+```
