@@ -1,19 +1,23 @@
 # Index
 - [Index](#index)
 - [Introduction](#introduction)
-  - [Tiering Model Refresh](#tiering-model-refresh)
+    - [Tiering Model Refresh](#tiering-model-refresh)
     - [Tier 0 Domain](#tier-0-domain)
     - [Tier 1 Services](#tier-1-services)
     - [Tier 2 End Users](#tier-2-end-users)
     - [The three Commandments](#the-three-commandments)
 - [Implementing tier 0 protection](#implementing-tier-0-protection)
-  - [Authentication Policies](#authentication-policies)
+    - [Authentication Policies](#authentication-policies)
     - [Deep Dive in Authentication Policies](#deep-dive-in-authentication-policies)
+    - [Implementing Tier 0 Authentication policy](#implementing-tier-0-authentication-policy)
+- [Tier 0 Admin Logon Flow: PAWs are a Must](#tier-0-admin-logon-flow-paws-are-a-must)
+    - [PAWs](#paws)
+    - [The cloud](#the-cloud)
 
 # Introduction
 The AD Administrative Tier Model prevents escalation of privilege by restricting what Administrators can control and where they can log on. In the context of protecting Tier 0, the latter ensures that Tier 0 credentials cannot be exposed to a system belonging to another Tier (Tier 1 or Tier 2).
 
-## Tiering Model Refresh
+### Tiering Model Refresh
 The tiering model is the best practice Microsoft promotes since the *red forest* approach was no longer considered safe due to vulnerabilities discoverd in the trust relationships between domains. The tiering model typically consists of 3 layers and provides isolation for each layer.
 
 > More layers can be added if desired, for example to create an separate application / data layer for company sensitive data.
@@ -43,7 +47,7 @@ In most guides for deploying an AD tiering model you will read about complicated
 - Group policies can be bypassed by administrators
 - Only domain joined assets are affected  
 
-## Authentication Policies
+### Authentication Policies
 To counter this there is a solution called *auhentication policies*, authentication Policies provide a way to contain high-privilege credentials to systems that are only pertinent to selected users, computers, or services. With these capabilities, you can limit Tier 0 account usage to Tier 0 hosts. That’s exactly what we need to achieve to protect Tier 0 identities from credential theft-based attacks.  
 
 > With Kerberos Authentication Policies you can define a claim which defines where the user is allowed to request a Kerberos Granting Ticket from.
@@ -76,5 +80,49 @@ Kerberos armoring logon flow (high level)
 
 The difference with a normal kerberos authentication is that a users TGT also includes the computers identity. After this the rest of the process looks similar when requesting access to resources, except that the users armored TGT is used for protection and restriction.
 
+### Implementing Tier 0 Authentication policy
 
+To contain Tier 0 accounts (Admins and Service accounts) the following steps are required:
+- Enable Kerberos Armoring (aka FAST) for DC's and tier 0 computer objects.
+- You need to have an OU structure in place that supports tiering of Active Directory.
+- Groups for Tier 0 accounts and Tier 0 computers should be in place.
+- Frequently update Authentication Policies to ensure that any new T0 Admin, T0 Service account or T0 computer is covered by the Authentication policy.
+- Configure an Authentication Policy with the following parameters and enforce the Kerberos Authentication policy:  
 
+| (User) Accounts | Conditions (Computer accounts/groups) | User Sign On |
+|:----------------|:--------------------------------------|:-------------|
+| T0 Admin accounts | (Member of each({ENTERPRISE DOMAIN CONTROLLERS}) Or Member of any({Tier 0 computers (TEST\Tier 0 computers)})) | Kerberos only |
+
+<sub>*Screenshot Authentication Policy*</sub>  
+![Authentication Policy](https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00MDUyODUxLTU1MDI4OWk2MDZBQ0ZDMEI0Mzg2OEVB?image-dimensions=750x750&revision=21)  
+
+Find more details about how to create Authentication Policies at [Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/how-to-configure-protected-accounts#create-a-user-account-audit-for-authentication-policy-with-adac).  
+
+# Tier 0 Admin Logon Flow: PAWs are a Must
+Attackers can make their way into environments even with MFA measures in place, through for example open RDP connections when an admins computer is compromised. To protect your self from these kind of attacks you can make use of Privileged Access Workstations (PAWs). This has been a recommendation of Microsoft for years. 
+
+### PAWs
+PAWs are workstations that a specifically used for Tier 0 administration and nothing else. These workstations only accept Tier 0 accounts to login.  
+
+> A lot of organizations choose to setup a protects RDS farm to replace PAWs, modern PAM solutions can provide session redirection where a Tier 0 admin is automatically connected to a Tier 0 RDS Session Host. You need to take extra effort in protecting your domain when not making use of PAWs.
+
+**PAWs vs Normal workstations**
+The advantage of using PAWs compared to normal workstations is that normal workstations have a bigger risk of being compromised. For example a laptop used for Email, Meetings and other office tasks is constantly exposed to potential threats. A PAW is only used for Domain administrative tasks and therefore the risk is much lower for it to be compromised.
+
+The classic logon flow is with a Domain Joined PAW, see picture below. 
+
+<sub>*Tier 0 Logon flow*</sub>  
+![Tier 0 Logon flow](https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00MDUyODUxLTU1MDI5NmlERkMzNzM2RUVDNEVEQkJG?revision=21)   
+
+### The cloud
+The solution above is straightforward but does not provide any modern cloud-based security features such as, but not limited to:
+- Multi factor Authentication
+- Conditional Access
+- Identity Protection
+
+**Protecting Tier 0 the Cloud way**  
+The cloud way of Protecting Tier 0 is by using an *Intune-managed PAW* and *Azure Virtual Desktop*, this approach is easy to implement and perfectly teams modern protection mechanisms with on-prem Active Directory. 
+
+![Tier 0 Logon Flow Cloud way](https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00MDUyODUxLTU1MDI5N2k4OTUyQUExRDA4NzE4OEFC?revision=21)  
+
+Logon to the AVD is restricted to come from a compliant PAW device only, Authentication Policies do the rest.
