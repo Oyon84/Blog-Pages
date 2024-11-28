@@ -107,7 +107,7 @@ Kerberos Authentication Policies were introduced in Windows Server 2012 R2, henc
 **Require rolling NTLM secret for NTLM authentication**  
 Configuration of this feature was moved to the properties of the domain in Active Directory Administrative Center. When enabled, for users with the “Smart card is required for interactive logon” checkbox set, a new random password will be generated according to the password policy. See https://learn.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/whats-new-in-credential-protection#rolling-public-key-only-users-ntlm-secrets for more details.
 
-**Allow NTLM network authentication when user is restricted to selected devices**
+**Allow NTLM network authentication when user is restricted to selected devices**  
 This setting is not recommended, allowing NTLM authentication reduces the capabilities of restricting access through Authentication Policies. Next to this, its recommended to place privileged user accounts in the **Protected Users** security group which is designed to harden privileged accounts and introduces a set of protection mechanisms, one of which is making NTLM Authentication impossible for the members. See https://learn.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/authentication-policies-and-authentication-policy-silos#about-authentication-policies for more details.  
 
 **Have Breakglass Accounts in place**  
