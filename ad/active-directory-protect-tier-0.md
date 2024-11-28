@@ -98,7 +98,7 @@ To contain Tier 0 accounts (Admins and Service accounts) the following steps are
 
 Find more details about how to create Authentication Policies at [Microsoft Learn](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/how-to-configure-protected-accounts#create-a-user-account-audit-for-authentication-policy-with-adac).  
 
-# Tier 0 Admin Logon Flow: PAWs are a Must
+# Tier 0 Admin Logon Flow: PAWs are a Must  
 Attackers can make their way into environments even with MFA measures in place, through for example open RDP connections when an admins computer is compromised. To protect your self from these kind of attacks you can make use of Privileged Access Workstations (PAWs). This has been a recommendation of Microsoft for years. 
 
 ### PAWs
@@ -115,10 +115,12 @@ The classic logon flow is with a Domain Joined PAW, see picture below.
 ![Tier 0 Logon flow](https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00MDUyODUxLTU1MDI5NmlERkMzNzM2RUVDNEVEQkJG?revision=21)   
 
 ### The cloud
-The solution above is straightforward but does not provide any modern cloud-based security features such as, but not limited to:
+The solution above is straightforward but does not provide any modern cloud-based security features such as:
 - Multi factor Authentication
 - Conditional Access
 - Identity Protection
+
+There are more benefits to using Azure and Intune, but these 3 points are relevant to the topic.
 
 **Protecting Tier 0 the Cloud way**  
 The cloud way of Protecting Tier 0 is by using an *Intune-managed PAW* and *Azure Virtual Desktop*, this approach is easy to implement and perfectly teams modern protection mechanisms with on-prem Active Directory. 
