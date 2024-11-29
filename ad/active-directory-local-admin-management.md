@@ -4,18 +4,17 @@
     - [Steps](#steps)
     - [Links](#links)
     - [Requirements](#requirements)
-- [1 Create GPO and link to OU](#1-create-gpo-and-link-to-ou)
+- [Create GPO and link to OU](#create-gpo-and-link-to-ou)
     - [Create GPO](#create-gpo)
     - [Create settings for the GPO](#create-settings-for-the-gpo)
     - [Link OU](#link-ou)
     - [Conclusion step 1](#conclusion-step-1)
-- [2 Check for new hosts](#2-check-for-new-hosts)
+- [Check for new hosts](#check-for-new-hosts)
     - [Powershell script](#powershell-script)
-- [3 Setup Scheduled Task](#3-setup-scheduled-task)
+- [Setup Scheduled Task](#setup-scheduled-task)
     - [Create Service Account](#create-service-account)
     - [Create new scheduled task](#create-new-scheduled-task)
 - [Conclusion](#conclusion)
-- [Comments](#comments)
 # Introduction
 **Managing local admins in Active Directory can be a challenging task. Especially when you want to give single users local admin permissions on a single asset. Typically this would require adding the user account to the local administrator group, but this is difficult to audit and typically the permissions are not removed when no longer needed.**  
    
@@ -47,7 +46,7 @@ This guide aims to use Powershell to complete the task, this
 
 In this guide I use 
 
-# 1 Create GPO and link to OU
+# Create GPO and link to OU
 We need to create a Group Policy object and link it to the OU containing the assets we want to control, in this guide we use the Tier 1 Service OU.
 > OU=Tier 1,OU=Computers,OU=Corp,DC=test,DC=local
 
@@ -115,7 +114,7 @@ This concludes the first step *Create GPO and link to OU*. We can continue to th
 
 Because we are using the %COMPUTERNAME% variable as group name when the GPO is processed on a client it will look for a group containing the hostname of the client. If this group does not exist it will have a resolution error, this is a non blocking error and all other GPO processing will continue as normal. Because the group does not exist by default we have to regularly check if there are new hosts added to the specified OU. That will be the topic of the next step.
 
-# 2 Check for new hosts
+# Check for new hosts
 To check for new hosts we will use a Powershell script and configure an scheduled task for this script. This task will run every 1 hour, but obviously this can be configured as you wish.
 
 First thing to do is to decide where you want to create the groups, this script does not set permissions on the group and therefore the group will inherit permissions from the delegation model. 
@@ -159,7 +158,7 @@ UserPrincipalName :
 
 After the script was manually executed verify the existence of the groups. If the groups are created we can move to the next step.
 
-# 3 Setup Scheduled Task
+# Setup Scheduled Task
 In this step we will setup the scheduled task with the help of Powershell. We need to create an new service account to perform this action. 
 
 ### Create Service Account
