@@ -2,16 +2,16 @@
 
 - [Index](#index)
 - [Introduction](#introduction)
-- [1 Download Cis Cat Lite](#1-download-cis-cat-lite)
+- [Download Cis Cat Lite](#download-cis-cat-lite)
     - [Links](#links)
     - [Download contents](#download-contents)
-- [2 Run assesment from GUI](#2-run-assesment-from-gui)
+- [Run assesment from GUI](#run-assesment-from-gui)
     - [Basic (Local System)](#basic-local-system)
     - [Advanced (Remote Systems)](#advanced-remote-systems)
-- [3 Run Assesment from CLI](#3-run-assesment-from-cli)
+- [Run Assesment from CLI](#run-assesment-from-cli)
     - [Interactive Mode](#interactive-mode)
     - [Automated Mode](#automated-mode)
-- [4 Example powershell script for automatic assesment](#4-example-powershell-script-for-automatic-assesment)
+- [Example powershell script for automatic assesment](#example-powershell-script-for-automatic-assesment)
     - [Script](#script)
 - [Comments](#comments)
 
@@ -24,7 +24,7 @@ CIS-CAT Lite is the free assessment tool developed by the CIS (Center for Intern
 - Receive a compliance score 1-100.
 - Follow remediation steps to improve your security.
 
-# 1 Download Cis Cat Lite
+# Download Cis Cat Lite
 In order to download Cis Cat Lite for free you do need to register with an email adress and a link will be sent to you with wich you can download Cis Cat Lite.  
 
 ### Links
@@ -62,7 +62,7 @@ d-----        11/20/2024  12:08 PM                setup
 -a----        11/20/2024  12:08 PM           1620 README
 ```
 
-# 2 Run assesment from GUI
+# Run assesment from GUI
 When extracted and you open the *assesor* folder you should have a file named *Assesor-GUI.exe*. This will open the GUI from where you can choose to do a local assesment or a remote one.
 
 > You should have local administrator privelidges to run the assement
@@ -138,7 +138,7 @@ When all information has been entered you can select the benchmark and profile y
 <br></br>
 Next you can start the assesment same why as in the basic method. For each host configure reports will be generated according to the option you configured. 
 
-# 3 Run Assesment from CLI
+# Run Assesment from CLI
 If you want to automate assements or integrate it within a script you will have to use the CLI options to run a benchmark. This chapter will go over the steps needed to run a benchmark with the CLI utility.
 <br></br>
 To run the CLI utility within Windows you have to use the *Assessor-CLI.bat* file. Running this without any parameters will give you an overview of all parameters and options you can set.
@@ -208,7 +208,7 @@ To run an automated assesment you need to define the benchmark and profile to ru
 c:\temp\CIS-CAT Lite Assessor v4.46.0\Assessor>Assessor-CLI.bat -b "benchmarks\CIS_Microsoft_Windows_11_Enterprise_Benchmark_v3.0.0-xccdf.xml" -p "Level 1 (L1) + BitLocker (BL)"
 ```
 
-# 4 Example powershell script for automatic assesment
+# Example powershell script for automatic assesment
 To run this script you need a file share where you can host the CIS CAT Lite files and set permissions so the user account who performs the assesment can access the files and write reports to it. The script will download the required files to a temporary location and execute the assesment. When the assesment is finished the report will be stored on the file share and the temporary files will be deleted again.
 
 ### Script
