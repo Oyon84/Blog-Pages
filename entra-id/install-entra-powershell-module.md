@@ -12,7 +12,7 @@
 - [Manage Users](#manage-users)
     - [Get an Entra User](#get-an-entra-user)
     - [Create a new User](#create-a-new-user)
-    - [Conclusion](#conclusion)
+- [Conclusion](#conclusion)
 
 # Introduction
 
@@ -158,7 +158,7 @@ Test2 User  45304f10-254a-4aec-ab51-b6281304105e      test2@fhs7.nl
 
 The *userParams* var can be extended with as many user properties as you want. 
 
-### Conclusion
+# Conclusion
 
 The Entra ID powershell module is a powerfull tool as part of the Graph API. You can either use it in user context or in application context. There is far more possible than what we did here and there are other Microsoft Graph modules as well offering even more functionality. 
 
