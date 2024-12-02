@@ -13,6 +13,7 @@
     - [Get an Entra User](#get-an-entra-user)
     - [Create a new User](#create-a-new-user)
 - [Conclusion](#conclusion)
+- [Comments](#comments)
 
 # Introduction
 
